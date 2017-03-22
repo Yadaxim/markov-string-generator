@@ -1,12 +1,12 @@
-# markov-string-generator
+### markov-string-generator
 
 a simple random string generator based en second order markov chains.
 
-#Install
+## Install
 
 npm install --save markov-string-generator
 
-#Usage
+## Usage
 
 Generator = require('markov-string-generator')
 
