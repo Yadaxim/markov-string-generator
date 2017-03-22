@@ -2,19 +2,16 @@
 
 a simple random string generator based en second order markov chains.
 
-Usage:
+#Install
 
+npm install --save markov-string-generator
+
+#Usage
+
+Generator = require('markov-string-generator')
 
 chains = [ 'gataca', 'gtgtagta', 'gtcgctgcta' ]
 
-generator = new Generator(names)
+generator = new Generator(chains)
 
-console.log('names', names)
-
-console.log(generator)
-
-console.log(generator.randomChain())
-console.log(generator.randomChain())
-console.log(generator.randomChain())
-console.log(generator.randomChain())
 console.log(generator.randomChain())

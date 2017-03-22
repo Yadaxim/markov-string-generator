@@ -1,16 +1,19 @@
 {
-  "name": "markov-generator",
+  "name": "markov-string-generator",
   "version": "1.0.1",
-  "description": "",
+  "description": "a simple random string generator based en second order markov chains.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-   "repository": {
+  "repository": {
     "type": "git",
-    "url": "git+https://github.com/Yadaxim/markov-chain-generator.git"
+    "url": "git+https://github.com/Yadaxim/markov-string-generator.git"
   },
   "author": "Adair Chávez <yadaxim@gmail.com>",
   "license": "ISC",
-  "homepage": "https://github.com/Yadaxim/markov-chain-generator#readme"
+  "homepage": "https://github.com/Yadaxim/markov-string-generator#readme",
+  "bugs": {
+    "url": "https://github.com/Yadaxim/markov-string-generator/issues"
+  }
 }
