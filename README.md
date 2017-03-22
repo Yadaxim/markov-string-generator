@@ -1,4 +1,4 @@
-### markov-string-generator
+# markov-string-generator
 
 a simple random string generator based en second order markov chains.
 
