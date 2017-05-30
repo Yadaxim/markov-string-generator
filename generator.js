@@ -16,11 +16,11 @@ weightedSample = function(probability_hash) {
   }
 };
 
-module.exports = class{
+module.exports = class Generator{
   constructor(chains){
 
     this.count_hash = {}
-   
+
     chains.forEach((chain)=>{
       //console.log('each')
       //console.log(chain)
