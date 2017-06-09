@@ -16,6 +16,63 @@ var weightedSample = function(probability_hash) {
   }
 };
 
+
+var normalizeCountHash = function(count_hash) {
+  normalized_count_hash = {}
+
+  Object.keys(count_hash).forEach(function(kk){
+    probability_hash = count_hash[kk]
+    total = 0
+    for (value in probability_hash) {
+      prob = probability_hash[value];
+      total += prob;
+    }
+
+    normalized_probaility_hash ={}
+    Object.keys(probability_hash).forEach(function(k){
+      normalized_probaility_hash[k] = probability_hash[k]/total
+    })
+
+    normalized_count_hash[kk] = normalized_probaility_hash
+
+  })
+
+  return normalized_count_hash
+
+}
+
+var mergeProbabilityHash = function(phs){
+  keys = new Set( phs.map(function(x){return Object.keys(x)}).reduce(function(a,b){return a.concat(b)}) )
+
+  newph = {}
+
+  keys.forEach(function(k){
+    newph[k] = phs.map(function(y){return y[k] || 0 }).reduce(function(a,b){return a+b}) / phs.length
+  })
+  return newph
+
+}
+
+var mergeCountHash = function(chs){
+  keys = new Set( chs.map(function(x){return Object.keys(x)}).reduce(function(a,b){return a.concat(b)}) )
+
+  newch = {}
+
+  keys.forEach(function(k){
+    newch[k] = mergeProbabilityHash( chs.map(function(y){return y[k]}).filter(function(z){return z}) )
+  })
+
+  return newch
+}
+
+var mergeGenerators = function(gs){
+  newg = new Generator([])
+  newg.count_hash = mergeCountHash(gs.map(function(x){return x.count_hash }))
+  return newg
+}
+
+
+
 export class Generator{
   constructor(chains){
 
@@ -26,9 +83,18 @@ export class Generator{
       //console.log(chain)
       this.addChain(chain)})
 
+
   }
 
+  static mergeGenerators(generators){
+    return mergeGenerators(generators)
+  }
+
+  showCountHash(){ console.log(this.count_hash)}
+
   resetCount(){ this.count_hash = {} }
+
+  normalize(){ this.count_hash = normalizeCountHash(this.count_hash) ; return this}
 
   addChain(chain){
 
@@ -76,7 +142,6 @@ export class Generator{
 
   }
 }
-
 
 // window.randomName = function(name_hash, min, max, starts_array) {};
 
