@@ -18,7 +18,7 @@ var weightedSample = function(probability_hash) {
 
 
 var normalizeCountHash = function(count_hash) {
-  normalized_count_hash = {}
+  let normalized_count_hash = {}
 
   Object.keys(count_hash).forEach(function(kk){
     probability_hash = count_hash[kk]
@@ -42,9 +42,9 @@ var normalizeCountHash = function(count_hash) {
 }
 
 var mergeProbabilityHash = function(phs){
-  keys = new Set( phs.map(function(x){return Object.keys(x)}).reduce(function(a,b){return a.concat(b)}) )
+  let keys = new Set( phs.map(function(x){return Object.keys(x)}).reduce(function(a,b){return a.concat(b)}) )
 
-  newph = {}
+  let newph = {}
 
   keys.forEach(function(k){
     newph[k] = phs.map(function(y){return y[k] || 0 }).reduce(function(a,b){return a+b}) / phs.length
@@ -54,9 +54,9 @@ var mergeProbabilityHash = function(phs){
 }
 
 var mergeCountHash = function(chs){
-  keys = new Set( chs.map(function(x){return Object.keys(x)}).reduce(function(a,b){return a.concat(b)}) )
+  let keys = new Set( chs.map(function(x){return Object.keys(x)}).reduce(function(a,b){return a.concat(b)}) )
 
-  newch = {}
+  let newch = {}
 
   keys.forEach(function(k){
     newch[k] = mergeProbabilityHash( chs.map(function(y){return y[k]}).filter(function(z){return z}) )
@@ -66,7 +66,7 @@ var mergeCountHash = function(chs){
 }
 
 var mergeGenerators = function(gs){
-  newg = new Generator([])
+  let newg = new Generator(['aaa'])
   newg.count_hash = mergeCountHash(gs.map(function(x){return x.count_hash }))
   return newg
 }
