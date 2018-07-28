@@ -73,7 +73,7 @@ var mergeGenerators = function(gs){
 
 
 
-module.export = class Generator{
+module.exports = class Generator{
   constructor(chains){
 
     this.count_hash = {}
